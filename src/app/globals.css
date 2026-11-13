@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #090909;
+  --charcoal: #141414;
+  --graphite: #242424;
+  --silver: #c0c0c0;
+  --silver-light: #e7e7e7;
+  --muted: #999999;
+  --header-h: 128px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink font-sans text-white antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: #e7e7e7;
+    color: #090909;
+  }
+  :focus-visible {
+    outline: 2px solid #e7e7e7;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Polished metal text — used for logo and display type */
+  .text-metal {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f1f1 30%, #a9a9a9 52%, #ececec 70%, #9d9d9d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-metal-brush {
+    background: linear-gradient(170deg, #ffffff 0%, #d9d9d9 25%, #8f8f8f 45%, #f5f5f5 60%, #b9b9b9 80%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
+  }
+  .display {
+    @apply font-display font-extrabold uppercase italic leading-[0.9] tracking-tight;
+  }
+  .eyebrow {
+    @apply font-sans text-xs font-semibold uppercase tracking-[0.3em] text-silver;
+  }
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .brushed {
+    background-image: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 7px),
+      radial-gradient(120% 90% at 80% 0%, #1d1d1d 0%, #0b0b0b 55%, #090909 100%);
+  }
+  .paper {
+    background-color: #ebebeb;
+    background-image: radial-gradient(90% 120% at 50% 0%, #f7f7f7 0%, #e4e4e4 60%, #d6d6d6 100%);
+  }
+  .metal-border {
+    border: 1px solid transparent;
+    background: linear-gradient(#0d0d0d, #0d0d0d) padding-box, linear-gradient(140deg, #8a8a8a, #2a2a2a 40%, #6b6b6b 70%, #d8d8d8) border-box;
+  }
+  /* Brand photos are already black/silver with a subtle purple glow, so only a light contrast boost. */
+  .mono-img {
+    filter: contrast(1.04);
+  }
+  .field {
+    @apply w-full rounded-md border border-white/15 bg-white/[0.04] px-3.5 py-3 text-sm text-white placeholder:text-white/35 transition focus:border-silver-light focus:bg-white/[0.07] focus:outline-none;
+  }
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-silver;
+  }
+  .field-error {
+    @apply mt-1 text-xs text-red-400;
+  }
+}
+
+@layer utilities {
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 48px), 0 100%);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}

@@ -1,0 +1,72 @@
+import {
+  Award,
+  BadgePercent,
+  Boxes,
+  Briefcase,
+  Brush,
+  Clock,
+  FileText,
+  Flag,
+  Gift,
+  HardHat,
+  Layers,
+  Lightbulb,
+  PackageCheck,
+  Palette,
+  PenTool,
+  Printer,
+  Scissors,
+  Shirt,
+  ShieldCheck,
+  Signpost,
+  Sparkles,
+  Star,
+  Sticker,
+  Tag,
+  Tent,
+  Truck,
+  UserPlus,
+  Users,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+
+/** Curated SVG icon library selectable from the admin dashboard. */
+export const ICONS: Record<string, LucideIcon> = {
+  Award,
+  BadgePercent,
+  Boxes,
+  Briefcase,
+  Brush,
+  Clock,
+  FileText,
+  Flag,
+  Gift,
+  HardHat,
+  Layers,
+  Lightbulb,
+  PackageCheck,
+  Palette,
+  PenTool,
+  Printer,
+  Scissors,
+  Shirt,
+  ShieldCheck,
+  Signpost,
+  Sparkles,
+  Star,
+  Sticker,
+  Tag,
+  Tent,
+  Truck,
+  UserPlus,
+  Users,
+  Zap,
+};
+
+export const ICON_NAMES = Object.keys(ICONS);
+
+export function Icon({ name, className, strokeWidth = 1.6 }: { name?: string; className?: string; strokeWidth?: number }) {
+  const Cmp = (name && ICONS[name]) || Sparkles;
+  return <Cmp className={className} strokeWidth={strokeWidth} aria-hidden="true" />;
+}
