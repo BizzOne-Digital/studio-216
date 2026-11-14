@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { FileUp, Loader2, Paperclip, X } from "lucide-react";
+import { FileUp, Info, Loader2, Paperclip, X } from "lucide-react";
 import { toast } from "sonner";
 import { ALLOWED_ARTWORK_TYPES, MAX_ARTWORK_BYTES } from "@/lib/uploads/shared";
 import { formatBytes } from "@/lib/utils";
@@ -40,6 +40,12 @@ export function ArtworkUpload({ value, onChange, max = 3, label = "Artwork (opti
   return (
     <div>
       <span className="field-label">{label}</span>
+      <p role="note" className="mb-2 flex items-start gap-2 rounded-md border border-white/20 bg-white/[0.06] px-3 py-2.5 text-xs leading-relaxed text-white/90">
+        <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+        <span>
+          <strong className="font-bold text-white">All images for printing should be in .PNG format.</strong> If artwork is not provided as a PNG, a graphic design charge will be applied.
+        </span>
+      </p>
       <div className="rounded-lg border border-dashed border-white/20 bg-white/[0.02] p-4">
         {value.length > 0 && (
           <ul className="mb-3 space-y-2">
@@ -63,7 +69,7 @@ export function ArtworkUpload({ value, onChange, max = 3, label = "Artwork (opti
             {busy ? "Uploading..." : "Attach a file"}
           </button>
         )}
-        <p className="mt-1 text-center text-[11px] text-white/40">PNG, JPEG, WebP, GIF or PDF · up to 4 MB · stored privately</p>
+        <p className="mt-1 text-center text-[11px] text-white/40">PNG preferred · JPEG, WebP, GIF or PDF also accepted · up to 4 MB · stored privately</p>
         <input ref={input} type="file" accept={ALLOWED_ARTWORK_TYPES.join(",")} className="sr-only" tabIndex={-1} onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} />
       </div>
     </div>
